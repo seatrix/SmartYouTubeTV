@@ -392,7 +392,12 @@ class MyXWalkLibraryLoader {
                 downloadDir = Environment.getExternalStorageDirectory();
                 showMessage("Please, make sure that SDCard is mounted");
             }
-
+            
+            if (downloadDir == null) { // try to use SDCard
+                downloadDir = new File("/mnt/usbdisk");
+                showMessage("3.Please, make sure that SDCard is mounted");
+            }
+            
             File downloadFile = new File(downloadDir, savedFile);
             if (downloadFile.isFile()) downloadFile.delete();
 
