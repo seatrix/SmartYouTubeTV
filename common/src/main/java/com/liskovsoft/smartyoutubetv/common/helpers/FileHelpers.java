@@ -27,9 +27,19 @@ public class FileHelpers {
 
         if (cacheDir == null) { // no storage, try to use SDCard
             cacheDir = Environment.getExternalStorageDirectory();
-            MessageHelpers.showMessage(context, "Please, make sure that SDCard is mounted");
+            MessageHelpers.showMessage(context, "FileHelpers-1:Please, make sure that SDCard is mounted");
         }
-
+        
+         if (cacheDir == null) { // no storage, try to use usb for Hisense TV ,By seatrix
+            cacheDir = new File("/mnt/usbdisk");
+            MessageHelpers.showMessage(context, "FileHelpers-2:Please, make sure //mnt//usbdisk is mounted");
+        }   
+        
+        if (cacheDir == null) { // no storage, try to use internal cache
+            cacheDir = context.getCachedir();
+            MessageHelpers.showMessage(context, "FileHelpers-3:Please, make sure context.getCachedir is mounted");
+        }
+        
         return cacheDir;
     }
 
