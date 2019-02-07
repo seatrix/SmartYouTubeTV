@@ -159,6 +159,12 @@ public final class MyDownloadManager {
             cacheDir = Environment.getExternalStorageDirectory();
             MessageHelpers.showMessage(mContext,"Please, make sure that SDCard is mounted");
         }
+        
+         if (cacheDir == null) { // try to use SDCard
+            cacheDir = new File("/mnt/usbdisk");
+            MessageHelpers.showMessage(mContext,"1:Please, make sure that SDCard is mounted");
+        }
+        
         File outputFile = new File(cacheDir, "tmp_file");
         return Uri.fromFile(outputFile);
     }
